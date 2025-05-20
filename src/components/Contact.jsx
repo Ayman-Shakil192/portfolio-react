@@ -271,9 +271,9 @@ const Contact = () => {
             </motion.p>
           </motion.div>
 
-          {/* Contact Methods */}
+          {/* Contact Methods Grid - Improved spacing */}
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 lg:mb-20"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12"
             variants={containerVariants}
           >
             {contactMethods.map((method, index) => (
@@ -283,23 +283,25 @@ const Contact = () => {
                 variants={itemVariants}
                 whileHover={{ y: -5, scale: 1.02 }}
                 transition={{ duration: 0.3 }}
-                className="block bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-6 hover:bg-white/15 transition-all duration-300 group"
+                className="block bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-6 hover:bg-white/15 transition-all duration-300 group h-full flex flex-col justify-between"
               >
-                <div
-                  className={`w-12 h-12 sm:w-14 sm:h-14 mx-auto mb-4 rounded-xl bg-gradient-to-r ${method.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}
-                >
-                  <method.icon className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+                <div className="text-center">
+                  <div
+                    className={`w-12 h-12 sm:w-14 sm:h-14 mx-auto mb-4 rounded-xl bg-gradient-to-r ${method.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}
+                  >
+                    <method.icon className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-2">
+                    {method.title}
+                  </h3>
+                  <p className="text-sm sm:text-base text-blue-400 font-medium mb-2">
+                    {method.value}
+                  </p>
+                  <p className="text-xs sm:text-sm text-gray-400 mb-4">
+                    {method.description}
+                  </p>
                 </div>
-                <h3 className="text-lg font-bold text-white text-center mb-2">
-                  {method.title}
-                </h3>
-                <p className="text-sm sm:text-base text-blue-400 text-center font-medium mb-2">
-                  {method.value}
-                </p>
-                <p className="text-xs sm:text-sm text-gray-400 text-center mb-2">
-                  {method.description}
-                </p>
-                <div className="flex items-center justify-center text-xs text-green-400">
+                <div className="flex items-center justify-center text-xs text-green-400 mt-auto">
                   <Clock className="w-3 h-3 mr-1" />
                   <span>{method.available}</span>
                 </div>
@@ -307,11 +309,11 @@ const Contact = () => {
             ))}
           </motion.div>
 
-          {/* Main Content - Form and Info */}
-          <div className="grid lg:grid-cols-3 gap-8 lg:gap-12 mb-16 lg:mb-20">
+          {/* Main Content - Form and Info - Improved layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
             {/* Contact Form */}
             <motion.div className="lg:col-span-2" variants={itemVariants}>
-              <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-6 sm:p-8 shadow-2xl">
+              <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-6 sm:p-8 shadow-2xl h-full">
                 <div className="flex items-center mb-6">
                   <div className="w-12 h-12 bg-gradient-to-r from-blue-400 to-purple-400 rounded-xl flex items-center justify-center mr-4">
                     <MessageSquare className="w-6 h-6 text-white" />
@@ -461,14 +463,14 @@ const Contact = () => {
               </div>
             </motion.div>
 
-            {/* Contact Info & Social */}
+            {/* Contact Info & Social - Improved layout with flex column */}
             <motion.div
-              className="lg:col-span-1 space-y-6"
+              className="lg:col-span-1 flex flex-col gap-6"
               variants={itemVariants}
             >
               {/* Quick Actions */}
-              <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-6 shadow-2xl">
-                <h3 className="text-xl font-bold text-white mb-6">
+              <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-6 shadow-2xl flex-1">
+                <h3 className="text-xl font-bold text-white mb-4">
                   Quick Actions
                 </h3>
                 <div className="space-y-4">
@@ -478,7 +480,7 @@ const Contact = () => {
                       href={action.action}
                       whileHover={{ scale: 1.02, x: 5 }}
                       whileTap={{ scale: 0.98 }}
-                      className={`flex items-center space-x-3 p-4 bg-gradient-to-r ${action.color} rounded-lg text-white hover:shadow-lg transition-all duration-300`}
+                      className={`flex items-center space-x-3 p-3 bg-gradient-to-r ${action.color} rounded-lg text-white hover:shadow-lg transition-all duration-300`}
                     >
                       <action.icon className="w-5 h-5" />
                       <div>
@@ -494,8 +496,8 @@ const Contact = () => {
               </div>
 
               {/* Social Links */}
-              <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-6 shadow-2xl">
-                <h3 className="text-xl font-bold text-white mb-6">
+              <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-6 shadow-2xl flex-1">
+                <h3 className="text-xl font-bold text-white mb-4">
                   Connect on Social
                 </h3>
                 <div className="grid grid-cols-2 gap-4">
@@ -507,9 +509,9 @@ const Contact = () => {
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.05, y: -2 }}
                       whileTap={{ scale: 0.95 }}
-                      className={`flex flex-col items-center p-4 bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 transition-all duration-300 text-white ${social.color}`}
+                      className={`flex flex-col items-center p-3 bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 transition-all duration-300 text-white ${social.color}`}
                     >
-                      <social.icon className="w-8 h-8 mb-2" />
+                      <social.icon className="w-7 h-7 mb-2" />
                       <span className="font-medium text-sm">{social.name}</span>
                       <span className="text-xs text-gray-400">
                         {social.followers}
@@ -520,10 +522,10 @@ const Contact = () => {
               </div>
 
               {/* Fun Fact */}
-              <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-6 shadow-2xl text-center">
+              <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-6 shadow-2xl text-center flex-1">
                 <div className="flex justify-center mb-4">
-                  <div className="w-16 h-16 bg-gradient-to-r from-pink-400 to-purple-400 rounded-full flex items-center justify-center">
-                    <Heart className="w-8 h-8 text-white" />
+                  <div className="w-14 h-14 bg-gradient-to-r from-pink-400 to-purple-400 rounded-full flex items-center justify-center">
+                    <Heart className="w-7 h-7 text-white" />
                   </div>
                 </div>
                 <h3 className="text-lg font-bold text-white mb-2">

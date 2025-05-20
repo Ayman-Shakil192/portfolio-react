@@ -4,12 +4,7 @@ import { useInView } from "react-intersection-observer";
 import { ArrowRight, Clock, Target, Book, Lightbulb } from "lucide-react";
 
 // Import your skills data from the separate file
-import {
-  categories,
-  skillsData,
-  achievements,
-  learningPath,
-} from "../constants/skills-data";
+import { categories, skillsData, learningPath } from "../constants/skills-data";
 
 const Skills = () => {
   const [activeCategory, setActiveCategory] = useState("frontend");
@@ -143,79 +138,89 @@ const Skills = () => {
             </motion.p>
           </motion.div>
 
-          {/* Achievements Section */}
-          <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-16 lg:mb-20"
-            variants={containerVariants}
-          >
-            {achievements.map((achievement, index) => (
-              <motion.div
-                key={index}
-                className="text-center"
-                variants={itemVariants}
-                whileHover={{ scale: 1.05, y: -5 }}
-                transition={{ duration: 0.3 }}
-              >
-                <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl sm:rounded-2xl p-4 sm:p-6 hover:bg-white/15 transition-all duration-300">
-                  <div
-                    className={`w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 rounded-xl ${achievement.color} border border-white/20 flex items-center justify-center`}
-                  >
-                    <achievement.icon className="w-6 h-6 sm:w-8 sm:h-8" />
-                  </div>
-                  <h3 className="text-lg font-bold text-white mb-2">
-                    {achievement.title}
-                  </h3>
-                  <p className="text-sm text-gray-300">
-                    {achievement.description}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-
           {/* Category Tabs */}
           <motion.div variants={itemVariants} className="mb-8 lg:mb-12">
-            <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
-              {categories.map((category) => (
-                <motion.button
-                  key={category.id}
-                  onClick={() => setActiveCategory(category.id)}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className={`relative px-4 sm:px-6 py-3 sm:py-4 rounded-xl transition-all duration-300 ${
-                    activeCategory === category.id
-                      ? "bg-white/15 border border-white/30"
-                      : "bg-white/5 border border-white/10 hover:bg-white/10"
-                  }`}
-                >
-                  <div className="flex items-center space-x-2 sm:space-x-3">
-                    <div
-                      className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-gradient-to-r ${category.color} flex items-center justify-center`}
+            <div className="relative">
+              {/* Background Element */}
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-purple-600/5 rounded-2xl -z-10"></div>
+
+              {/* Category Container */}
+              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4 sm:p-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+                  {categories.map((category) => (
+                    <motion.button
+                      key={category.id}
+                      onClick={() => setActiveCategory(category.id)}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      className={`relative overflow-hidden rounded-xl transition-all duration-300 ${
+                        activeCategory === category.id
+                          ? "shadow-lg shadow-blue-500/20"
+                          : "hover:shadow-md hover:shadow-white/10"
+                      }`}
                     >
-                      <category.icon className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-                    </div>
-                    <div className="text-left">
-                      <div className="text-white font-semibold text-sm sm:text-base">
-                        {category.name}
+                      {/* Card Background */}
+                      <div
+                        className={`absolute inset-0 opacity-20 bg-gradient-to-br ${category.color}`}
+                      ></div>
+
+                      {/* Glow Effect when active */}
+                      {activeCategory === category.id && (
+                        <motion.div
+                          layoutId="categoryGlow"
+                          className="absolute inset-0 bg-gradient-to-r from-blue-500/30 to-purple-500/30 blur-sm"
+                          transition={{
+                            type: "spring",
+                            stiffness: 200,
+                            damping: 25,
+                          }}
+                        />
+                      )}
+
+                      <div
+                        className={`relative z-10 p-4 sm:p-5 flex items-center ${
+                          activeCategory === category.id
+                            ? "bg-white/15"
+                            : "bg-white/5"
+                        }`}
+                      >
+                        {/* Icon Container */}
+                        <div
+                          className={`w-12 h-12 sm:w-14 sm:h-14 rounded-lg bg-gradient-to-br ${category.color} flex items-center justify-center shadow-lg mr-4 flex-shrink-0`}
+                        >
+                          <category.icon className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+                        </div>
+
+                        {/* Text Content */}
+                        <div className="text-left flex-1 min-w-0">
+                          <h4 className="text-white font-bold text-base sm:text-lg truncate">
+                            {category.name}
+                          </h4>
+                          <p className="text-gray-300 text-xs sm:text-sm mt-1 line-clamp-2">
+                            {category.description}
+                          </p>
+                        </div>
+
+                        {/* Selection Indicator */}
+                        {activeCategory === category.id && (
+                          <div className="h-full absolute right-0 top-0 w-1.5 bg-gradient-to-b from-blue-400 to-purple-500"></div>
+                        )}
                       </div>
-                      <div className="text-gray-400 text-xs">
-                        {category.description}
-                      </div>
-                    </div>
-                  </div>
-                  {activeCategory === category.id && (
-                    <motion.div
-                      layoutId="activeCategory"
-                      className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-xl border border-white/20"
-                      transition={{
-                        type: "spring",
-                        stiffness: 300,
-                        damping: 30,
-                      }}
-                    />
-                  )}
-                </motion.button>
-              ))}
+
+                      {/* Hover Accent */}
+                      <motion.div
+                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500"
+                        initial={{ scaleX: 0, opacity: 0 }}
+                        animate={{
+                          scaleX: activeCategory === category.id ? 1 : 0,
+                          opacity: activeCategory === category.id ? 1 : 0,
+                        }}
+                        transition={{ duration: 0.3 }}
+                      />
+                    </motion.button>
+                  ))}
+                </div>
+              </div>
             </div>
           </motion.div>
 
