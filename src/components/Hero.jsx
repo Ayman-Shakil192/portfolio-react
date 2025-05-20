@@ -1,50 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, ArrowRight, Download } from "lucide-react";
+import React from "react";
+import { motion } from "framer-motion";
+import { ArrowRight, Download, Github, Linkedin } from "lucide-react";
+import Typewriter from "typewriter-effect";
 
 const Hero = () => {
-  const [currentRole, setCurrentRole] = useState(0);
-  const [displayedText, setDisplayedText] = useState("");
-  const [isTyping, setIsTyping] = useState(true);
-
   const roles = [
     "Software Engineer",
     "Full-Stack Developer",
     "Cloud Architect",
     "AI Solutions Expert",
   ];
-
-  useEffect(() => {
-    let timeout;
-    const currentText = roles[currentRole];
-
-    if (isTyping) {
-      // Typing effect
-      if (displayedText.length < currentText.length) {
-        timeout = setTimeout(() => {
-          setDisplayedText(currentText.slice(0, displayedText.length + 1));
-        }, 100); // Typing speed
-      } else {
-        // Finished typing, wait before deleting
-        timeout = setTimeout(() => {
-          setIsTyping(false);
-        }, 2000); // Pause before deleting
-      }
-    } else {
-      // Deleting effect
-      if (displayedText.length > 0) {
-        timeout = setTimeout(() => {
-          setDisplayedText(displayedText.slice(0, -1));
-        }, 50); // Deleting speed (faster than typing)
-      } else {
-        // Finished deleting, move to next role
-        setCurrentRole((prev) => (prev + 1) % roles.length);
-        setIsTyping(true);
-      }
-    }
-
-    return () => clearTimeout(timeout);
-  }, [displayedText, currentRole, isTyping, roles]);
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
@@ -58,24 +23,43 @@ const Hero = () => {
       id="home"
       className="relative min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 overflow-hidden flex items-center"
     >
-      {/* Animated background */}
+      {/* Enhanced animated background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20" />
 
-        {/* Floating particles */}
-        {[...Array(15)].map((_, i) => (
+        {/* Enhanced floating particles with more variety and quantity */}
+        {[...Array(30)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-2 h-2 bg-white/20 rounded-full"
+            className={`absolute ${
+              i % 4 === 0
+                ? "w-1 h-1"
+                : i % 4 === 1
+                ? "w-2 h-2"
+                : i % 4 === 2
+                ? "w-3 h-3"
+                : "w-4 h-4"
+            } 
+                       ${
+                         i % 5 === 0
+                           ? "bg-blue-400/30"
+                           : i % 5 === 1
+                           ? "bg-purple-400/30"
+                           : i % 5 === 2
+                           ? "bg-white/20"
+                           : i % 5 === 3
+                           ? "bg-indigo-400/30"
+                           : "bg-violet-400/30"
+                       } rounded-full`}
             animate={{
-              x: [0, 100, 0],
-              y: [0, -100, 0],
-              opacity: [0, 1, 0],
+              x: [0, Math.random() * 300 - 150, 0],
+              y: [0, Math.random() * 300 - 150, 0],
+              opacity: [0, 0.7, 0],
             }}
             transition={{
-              duration: Math.random() * 10 + 10,
+              duration: Math.random() * 20 + 15,
               repeat: Infinity,
-              ease: "linear",
+              ease: "easeInOut",
             }}
             style={{
               left: `${Math.random() * 100}%`,
@@ -84,22 +68,37 @@ const Hero = () => {
           />
         ))}
 
-        {/* Geometric shapes */}
         <motion.div
-          className="absolute top-1/4 right-1/4 w-24 h-24 sm:w-32 sm:h-32 border border-white/10 rounded-full"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          className="absolute bottom-16 left-16 w-24 h-24 sm:w-32 sm:h-32 border border-purple-400/30 transform rotate-45"
+          animate={{ rotate: [45, 55, 45], scale: [1, 0.9, 1] }}
+          transition={{
+            rotate: { duration: 15, repeat: Infinity, ease: "easeInOut" },
+            scale: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+          }}
         />
+        {/* Rectangle on left side */}
         <motion.div
-          className="absolute bottom-1/4 left-1/4 w-16 h-16 sm:w-24 sm:h-24 border border-purple-400/20 rotate-45"
-          animate={{ rotate: 405 }}
-          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+          className="absolute top-1/4 left-8 w-16 h-36 border border-blue-400/20 transform -rotate-12"
+          animate={{ rotate: [-12, -5, -12], opacity: [0.2, 0.5, 0.2] }}
+          transition={{
+            rotate: { duration: 18, repeat: Infinity, ease: "easeInOut" },
+            opacity: { duration: 7, repeat: Infinity, ease: "easeInOut" },
+          }}
+        />
+        {/* New shape with alternative non-circular design */}
+        <motion.div
+          className="absolute top-24 right-16 w-24 h-32 border border-indigo-400/20 transform rotate-12 skew-y-3"
+          animate={{ rotate: [12, 15, 12], opacity: [0.2, 0.4, 0.2] }}
+          transition={{
+            rotate: { duration: 10, repeat: Infinity, ease: "easeInOut" },
+            opacity: { duration: 8, repeat: Infinity, ease: "easeInOut" },
+          }}
         />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center text-white max-w-4xl mx-auto">
-          {/* Main heading */}
+          {/* Main heading with enhanced animations */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -108,29 +107,35 @@ const Hero = () => {
           >
             <motion.h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
               <span className="block text-white/90">Hello, I'm</span>
-              <span className="block bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              <motion.span
+                className="block bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent"
+                animate={{
+                  backgroundPosition: ["0% center", "100% center", "0% center"],
+                }}
+                transition={{
+                  duration: 10,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+                style={{ backgroundSize: "200% auto" }}
+              >
                 Ayman Shakil
-              </span>
+              </motion.span>
             </motion.h1>
 
-            <div className="text-xl sm:text-2xl md:text-3xl mb-6">
+            <div className="text-xl sm:text-2xl md:text-3xl mb-6 h-12">
               <span className="text-gray-300">A passionate </span>
-              <div className="inline-block h-8 sm:h-10 md:h-12">
-                <span className="text-transparent bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text font-semibold">
-                  {displayedText}
-                  <motion.span
-                    animate={{ opacity: [0, 1, 0] }}
-                    transition={{
-                      duration: 1,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                    className="text-blue-400 ml-1"
-                  >
-                    |
-                  </motion.span>
-                </span>
-              </div>
+              <span className="text-transparent bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text font-semibold inline-block">
+                <Typewriter
+                  options={{
+                    strings: roles,
+                    autoStart: true,
+                    loop: true,
+                    deleteSpeed: 50,
+                    delay: 80,
+                  }}
+                />
+              </span>
             </div>
 
             <motion.p
@@ -145,7 +150,7 @@ const Hero = () => {
             </motion.p>
           </motion.div>
 
-          {/* CTA buttons */}
+          {/* Enhanced CTA buttons with better visual appeal */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -154,30 +159,38 @@ const Hero = () => {
           >
             <motion.button
               onClick={() => scrollToSection("contact")}
-              whileHover={{ scale: 1.05 }}
+              whileHover={{
+                scale: 1.05,
+                boxShadow: "0 0 15px rgba(79, 70, 229, 0.6)",
+              }}
               whileTap={{ scale: 0.95 }}
-              className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold flex items-center justify-center space-x-2 hover:shadow-lg transition-all duration-300"
+              className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold flex items-center justify-center space-x-2 transition-all duration-300 shadow-lg shadow-blue-900/30"
             >
               <span>Get In Touch</span>
               <ArrowRight className="w-5 h-5" />
             </motion.button>
 
-            <motion.button
-              whileHover={{ scale: 1.05 }}
+            <motion.a
+              href="/ayman-resume.pdf"
+              download
+              whileHover={{
+                scale: 1.05,
+                boxShadow: "0 0 15px rgba(255, 255, 255, 0.15)",
+              }}
               whileTap={{ scale: 0.95 }}
-              className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 border border-white/20 text-white rounded-lg font-semibold flex items-center justify-center space-x-2 hover:bg-white/10 transition-all duration-300"
+              className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 border border-white/20 bg-white/5 backdrop-blur-sm text-white rounded-lg font-semibold flex items-center justify-center space-x-2 transition-all duration-300"
             >
               <Download className="w-5 h-5" />
               <span>Download Resume</span>
-            </motion.button>
+            </motion.a>
           </motion.div>
 
-          {/* Quick stats */}
+          {/* Enhanced stats with improved visuals */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.9, duration: 0.8 }}
-            className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto"
+            className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto"
           >
             {[
               { number: "2+", label: "Years Experience" },
@@ -190,7 +203,11 @@ const Hero = () => {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.2 + index * 0.1 }}
-                className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-4 text-center"
+                whileHover={{
+                  y: -5,
+                  boxShadow: "0 10px 25px -5px rgba(66, 153, 225, 0.5)",
+                }}
+                className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-5 text-center transition-all duration-300"
               >
                 <div className="text-2xl sm:text-3xl font-bold text-transparent bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text mb-1">
                   {stat.number}
