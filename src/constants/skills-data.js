@@ -301,33 +301,6 @@ export const skillsData = {
   ],
 };
 
-export const achievements = [
-  {
-    icon: Star,
-    title: "Full-Stack Proficiency",
-    description: "End-to-end development capabilities",
-    color: "text-yellow-400 bg-yellow-500/20",
-  },
-  {
-    icon: TrendingUp,
-    title: "Performance Optimization",
-    description: "25% improvement in application performance",
-    color: "text-green-400 bg-green-500/20",
-  },
-  {
-    icon: Shield,
-    title: "Security Implementation",
-    description: "100% security compliance achieved",
-    color: "text-blue-400 bg-blue-500/20",
-  },
-  {
-    icon: Zap,
-    title: "Automation Expert",
-    description: "40% reduction in deployment time",
-    color: "text-purple-400 bg-purple-500/20",
-  },
-];
-
 // Learning Path data
 export const learningPath = [
   {
