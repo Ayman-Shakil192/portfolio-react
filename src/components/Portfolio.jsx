@@ -6,6 +6,7 @@ import Projects from "./Projects";
 import About from "./About";
 import Skills from "./Skills";
 import Contact from "./Contact";
+import Footer from "./Footer";
 
 export default function Portfolio() {
   return (
@@ -16,6 +17,7 @@ export default function Portfolio() {
       <Projects />
       <Skills />
       <Contact />
+      <Footer />
     </div>
   );
 }

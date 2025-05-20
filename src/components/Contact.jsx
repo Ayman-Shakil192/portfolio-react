@@ -9,19 +9,10 @@ import {
   User,
   MessageSquare,
   Calendar,
-  Github,
-  Linkedin,
-  Twitter,
-  Instagram,
-  Download,
   Clock,
   CheckCircle,
   AlertCircle,
   Loader,
-  ExternalLink,
-  Heart,
-  Coffee,
-  Zap,
 } from "lucide-react";
 
 const Contact = () => {
@@ -95,61 +86,6 @@ const Contact = () => {
       action: "#",
       color: "from-orange-400 to-red-400",
       available: "Flexible timings",
-    },
-  ];
-
-  const socialLinks = [
-    {
-      icon: Github,
-      name: "GitHub",
-      url: "https://github.com/yourusername",
-      color: "hover:text-gray-400",
-      followers: "50+",
-    },
-    {
-      icon: Linkedin,
-      name: "LinkedIn",
-      url: "https://linkedin.com/in/yourprofile",
-      color: "hover:text-blue-400",
-      followers: "500+",
-    },
-    {
-      icon: Twitter,
-      name: "Twitter",
-      url: "https://twitter.com/yourusername",
-      color: "hover:text-sky-400",
-      followers: "100+",
-    },
-    {
-      icon: Instagram,
-      name: "Instagram",
-      url: "https://instagram.com/yourusername",
-      color: "hover:text-pink-400",
-      followers: "200+",
-    },
-  ];
-
-  const quickActions = [
-    {
-      icon: Download,
-      title: "Download Resume",
-      description: "Get my latest CV",
-      action: "#",
-      color: "from-blue-500 to-purple-500",
-    },
-    {
-      icon: Github,
-      title: "View Portfolio",
-      description: "Check out my projects",
-      action: "https://github.com/yourusername",
-      color: "from-gray-600 to-gray-800",
-    },
-    {
-      icon: Calendar,
-      title: "Book a Call",
-      description: "Schedule a meeting",
-      action: "#",
-      color: "from-green-500 to-emerald-500",
     },
   ];
 
@@ -271,49 +207,52 @@ const Contact = () => {
             </motion.p>
           </motion.div>
 
-          {/* Contact Methods Grid - Improved spacing */}
-          <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12"
-            variants={containerVariants}
-          >
-            {contactMethods.map((method, index) => (
-              <motion.a
-                key={index}
-                href={method.action}
-                variants={itemVariants}
-                whileHover={{ y: -5, scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-                className="block bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-6 hover:bg-white/15 transition-all duration-300 group h-full flex flex-col justify-between"
-              >
-                <div className="text-center">
-                  <div
-                    className={`w-12 h-12 sm:w-14 sm:h-14 mx-auto mb-4 rounded-xl bg-gradient-to-r ${method.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}
-                  >
-                    <method.icon className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+          {/* Main Content Area - Restructured Layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            {/* Contact Methods Grid - Now horizontal on larger screens */}
+            <motion.div
+              className="lg:col-span-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8"
+              variants={containerVariants}
+            >
+              {contactMethods.map((method, index) => (
+                <motion.a
+                  key={index}
+                  href={method.action}
+                  variants={itemVariants}
+                  whileHover={{ y: -5, scale: 1.02 }}
+                  transition={{ duration: 0.3 }}
+                  className="block bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-6 hover:bg-white/15 transition-all duration-300 group h-full flex flex-col justify-between"
+                >
+                  <div className="text-center">
+                    <div
+                      className={`w-12 h-12 sm:w-14 sm:h-14 mx-auto mb-4 rounded-xl bg-gradient-to-r ${method.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}
+                    >
+                      <method.icon className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+                    </div>
+                    <h3 className="text-lg font-bold text-white mb-2">
+                      {method.title}
+                    </h3>
+                    <p className="text-sm sm:text-base text-blue-400 font-medium mb-2">
+                      {method.value}
+                    </p>
+                    <p className="text-xs sm:text-sm text-gray-400 mb-4">
+                      {method.description}
+                    </p>
                   </div>
-                  <h3 className="text-lg font-bold text-white mb-2">
-                    {method.title}
-                  </h3>
-                  <p className="text-sm sm:text-base text-blue-400 font-medium mb-2">
-                    {method.value}
-                  </p>
-                  <p className="text-xs sm:text-sm text-gray-400 mb-4">
-                    {method.description}
-                  </p>
-                </div>
-                <div className="flex items-center justify-center text-xs text-green-400 mt-auto">
-                  <Clock className="w-3 h-3 mr-1" />
-                  <span>{method.available}</span>
-                </div>
-              </motion.a>
-            ))}
-          </motion.div>
+                  <div className="flex items-center justify-center text-xs text-green-400 mt-auto">
+                    <Clock className="w-3 h-3 mr-1" />
+                    <span>{method.available}</span>
+                  </div>
+                </motion.a>
+              ))}
+            </motion.div>
 
-          {/* Main Content - Form and Info - Improved layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-            {/* Contact Form */}
-            <motion.div className="lg:col-span-2" variants={itemVariants}>
-              <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-6 sm:p-8 shadow-2xl h-full">
+            {/* Contact Form - Now centered and wider */}
+            <motion.div
+              className="lg:col-span-8 lg:col-start-3"
+              variants={itemVariants}
+            >
+              <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-6 sm:p-8 shadow-2xl">
                 <div className="flex items-center mb-6">
                   <div className="w-12 h-12 bg-gradient-to-r from-blue-400 to-purple-400 rounded-xl flex items-center justify-center mr-4">
                     <MessageSquare className="w-6 h-6 text-white" />
@@ -462,127 +401,7 @@ const Contact = () => {
                 </form>
               </div>
             </motion.div>
-
-            {/* Contact Info & Social - Improved layout with flex column */}
-            <motion.div
-              className="lg:col-span-1 flex flex-col gap-6"
-              variants={itemVariants}
-            >
-              {/* Quick Actions */}
-              <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-6 shadow-2xl flex-1">
-                <h3 className="text-xl font-bold text-white mb-4">
-                  Quick Actions
-                </h3>
-                <div className="space-y-4">
-                  {quickActions.map((action, index) => (
-                    <motion.a
-                      key={index}
-                      href={action.action}
-                      whileHover={{ scale: 1.02, x: 5 }}
-                      whileTap={{ scale: 0.98 }}
-                      className={`flex items-center space-x-3 p-3 bg-gradient-to-r ${action.color} rounded-lg text-white hover:shadow-lg transition-all duration-300`}
-                    >
-                      <action.icon className="w-5 h-5" />
-                      <div>
-                        <div className="font-semibold">{action.title}</div>
-                        <div className="text-sm opacity-90">
-                          {action.description}
-                        </div>
-                      </div>
-                      <ExternalLink className="w-4 h-4 ml-auto" />
-                    </motion.a>
-                  ))}
-                </div>
-              </div>
-
-              {/* Social Links */}
-              <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-6 shadow-2xl flex-1">
-                <h3 className="text-xl font-bold text-white mb-4">
-                  Connect on Social
-                </h3>
-                <div className="grid grid-cols-2 gap-4">
-                  {socialLinks.map((social, index) => (
-                    <motion.a
-                      key={index}
-                      href={social.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.05, y: -2 }}
-                      whileTap={{ scale: 0.95 }}
-                      className={`flex flex-col items-center p-3 bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 transition-all duration-300 text-white ${social.color}`}
-                    >
-                      <social.icon className="w-7 h-7 mb-2" />
-                      <span className="font-medium text-sm">{social.name}</span>
-                      <span className="text-xs text-gray-400">
-                        {social.followers}
-                      </span>
-                    </motion.a>
-                  ))}
-                </div>
-              </div>
-
-              {/* Fun Fact */}
-              <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-6 shadow-2xl text-center flex-1">
-                <div className="flex justify-center mb-4">
-                  <div className="w-14 h-14 bg-gradient-to-r from-pink-400 to-purple-400 rounded-full flex items-center justify-center">
-                    <Heart className="w-7 h-7 text-white" />
-                  </div>
-                </div>
-                <h3 className="text-lg font-bold text-white mb-2">
-                  Let's grab a coffee!
-                </h3>
-                <p className="text-gray-300 text-sm">
-                  I'm always up for discussions over coffee. Best ideas often
-                  come with a good cup of joe!
-                </p>
-                <div className="flex justify-center space-x-2 mt-4">
-                  <Coffee className="w-5 h-5 text-orange-400" />
-                  <Zap className="w-5 h-5 text-yellow-400" />
-                  <Coffee className="w-5 h-5 text-orange-400" />
-                </div>
-              </div>
-            </motion.div>
           </div>
-
-          {/* Footer CTA */}
-          <motion.div
-            variants={itemVariants}
-            className="bg-gradient-to-r from-blue-600 via-purple-600 to-slate-700 rounded-2xl p-6 sm:p-8 lg:p-12 text-center text-white relative overflow-hidden"
-          >
-            <div className="absolute top-0 right-0 transform translate-x-32 -translate-y-32">
-              <div className="w-64 h-64 lg:w-96 lg:h-96 bg-white/10 rounded-full" />
-            </div>
-            <div className="relative z-10">
-              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6">
-                Ready to Start Something Great?
-              </h3>
-              <p className="text-base sm:text-lg lg:text-xl mb-8 max-w-2xl mx-auto text-blue-100 leading-relaxed">
-                Whether it's a new project, collaboration opportunity, or just a
-                friendly chat about technology, I'm always excited to connect
-                with like-minded individuals.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <motion.a
-                  href="mailto:aymanshakil007@gmail.com"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-white text-blue-600 px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold flex items-center justify-center space-x-2 hover:bg-blue-50 transition-all duration-300 shadow-lg"
-                >
-                  <Mail className="w-5 h-5" />
-                  <span>Send Email</span>
-                </motion.a>
-                <motion.a
-                  href="#"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="border border-white/20 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold flex items-center justify-center space-x-2 hover:bg-white/10 transition-all duration-300"
-                >
-                  <Calendar className="w-5 h-5" />
-                  <span>Schedule Call</span>
-                </motion.a>
-              </div>
-            </div>
-          </motion.div>
         </motion.div>
       </div>
     </section>

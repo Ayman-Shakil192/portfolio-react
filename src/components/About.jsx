@@ -347,7 +347,7 @@ const About = () => {
               <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 shadow-xl border border-white/20 h-full transform transition-all duration-300 hover:border-purple-400/30">
                 <div className="flex items-center mb-8">
                   <div className="w-14 h-14 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center mr-5 shadow-lg">
-                    <User className="w-7 h-7 text-white" />
+                    <BookOpen className="w-7 h-7 text-white" />
                   </div>
                   <h3 className="text-3xl font-bold text-white">My Story</h3>
                 </div>

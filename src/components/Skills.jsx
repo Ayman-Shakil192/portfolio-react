@@ -364,39 +364,6 @@ const Skills = () => {
               ))}
             </div>
           </motion.div>
-
-          {/* CTA Section */}
-          <motion.div
-            variants={itemVariants}
-            className="bg-gradient-to-r from-blue-600 via-purple-600 to-slate-700 rounded-2xl p-6 sm:p-8 lg:p-12 text-center text-white relative overflow-hidden"
-          >
-            <div className="absolute top-0 right-0 transform translate-x-32 -translate-y-32">
-              <div className="w-64 h-64 lg:w-96 lg:h-96 bg-white/10 rounded-full" />
-            </div>
-            <div className="relative z-10">
-              <div className="flex justify-center mb-6">
-                <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
-                  <Lightbulb className="w-8 h-8 text-white" />
-                </div>
-              </div>
-              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6">
-                Ready to Build Something Amazing?
-              </h3>
-              <p className="text-base sm:text-lg lg:text-xl mb-8 max-w-2xl mx-auto text-blue-100 leading-relaxed">
-                Let's combine these skills to create innovative solutions that
-                solve real-world problems and deliver exceptional user
-                experiences.
-              </p>
-              <motion.button
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-white text-blue-600 px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold flex items-center space-x-2 mx-auto hover:bg-blue-50 transition-all duration-300 shadow-lg"
-              >
-                <span>Let's Collaborate</span>
-                <ArrowRight className="w-5 h-5" />
-              </motion.button>
-            </div>
-          </motion.div>
         </motion.div>
       </div>
     </section>

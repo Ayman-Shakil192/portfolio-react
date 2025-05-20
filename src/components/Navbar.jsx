@@ -10,7 +10,6 @@ const Navbar = () => {
   const navigation = [
     { name: "Home", to: "home", icon: <Code2 className="w-4 h-4" /> },
     { name: "About", to: "about", icon: null },
-    { name: "Experience", to: "experience", icon: null },
     { name: "Projects", to: "projects", icon: null },
     { name: "Skills", to: "skills", icon: null },
     { name: "Contact", to: "contact", icon: null },
