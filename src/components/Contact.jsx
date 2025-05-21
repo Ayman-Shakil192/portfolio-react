@@ -1,19 +1,17 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import {
   Mail,
-  Phone,
-  MapPin,
   Send,
   User,
   MessageSquare,
-  Calendar,
   Clock,
   CheckCircle,
   AlertCircle,
   Loader,
 } from "lucide-react";
+import contactMethods from "../constants/contact-data";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -22,7 +20,7 @@ const Contact = () => {
     subject: "",
     message: "",
   });
-  const [formStatus, setFormStatus] = useState(null); // null, 'loading', 'success', 'error'
+  const [formStatus, setFormStatus] = useState(null);
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -49,45 +47,6 @@ const Contact = () => {
       },
     },
   };
-
-  const contactMethods = [
-    {
-      icon: Mail,
-      title: "Email",
-      value: "aymanshakil007@gmail.com",
-      description: "Send me an email anytime",
-      action: "mailto:aymanshakil007@gmail.com",
-      color: "from-blue-400 to-cyan-400",
-      available: "24/7",
-    },
-    {
-      icon: Phone,
-      title: "Phone",
-      value: "+91 XXXXX XXXXX",
-      description: "Call me during work hours",
-      action: "tel:+91XXXXXXXXX",
-      color: "from-green-400 to-emerald-400",
-      available: "9AM - 6PM IST",
-    },
-    {
-      icon: MapPin,
-      title: "Location",
-      value: "Bengaluru, Karnataka",
-      description: "Available for local meetings",
-      action: "#",
-      color: "from-purple-400 to-pink-400",
-      available: "Local meetings",
-    },
-    {
-      icon: Calendar,
-      title: "Schedule",
-      value: "Book a Meeting",
-      description: "Schedule a video call",
-      action: "#",
-      color: "from-orange-400 to-red-400",
-      available: "Flexible timings",
-    },
-  ];
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

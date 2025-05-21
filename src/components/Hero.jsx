@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Download, Github, Linkedin } from "lucide-react";
 import Typewriter from "typewriter-effect";
@@ -196,7 +195,7 @@ const Hero = () => {
               { number: "2+", label: "Years Experience" },
               { number: "25%", label: "Performance Boost" },
               { number: "100%", label: "Security Compliance" },
-              { number: "3", label: "Major Projects" },
+              { number: "6", label: "Major Projects" },
             ].map((stat, index) => (
               <motion.div
                 key={index}

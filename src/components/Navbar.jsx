@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Github, Linkedin, Mail, Download, Code2 } from "lucide-react";
 
@@ -16,10 +16,14 @@ const Navbar = () => {
   ];
 
   const socialLinks = [
-    { icon: Github, href: "https://github.com/yourusername", label: "GitHub" },
+    {
+      icon: Github,
+      href: "https://github.com/Ayman-Shakil192",
+      label: "GitHub",
+    },
     {
       icon: Linkedin,
-      href: "https://linkedin.com/in/yourprofile",
+      href: "https://www.linkedin.com/in/ayman-shakil-272424239/",
       label: "LinkedIn",
     },
     { icon: Mail, href: "mailto:aymanshakil007@gmail.com", label: "Email" },
@@ -139,17 +143,6 @@ const Navbar = () => {
                   <link.icon className="w-5 h-5" />
                 </motion.a>
               ))}
-              <motion.button
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 1.2 }}
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                className="ml-4 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-medium flex items-center space-x-2 hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 border border-white/20"
-              >
-                <Download className="w-4 h-4" />
-                <span>Resume</span>
-              </motion.button>
             </div>
 
             {/* Mobile menu button */}
@@ -240,17 +233,6 @@ const Navbar = () => {
                         </motion.a>
                       ))}
                     </div>
-                    <motion.button
-                      initial={{ opacity: 0, scale: 0 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 0.8 }}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-medium flex items-center space-x-2 border border-white/20 hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300"
-                    >
-                      <Download className="w-4 h-4" />
-                      <span>Resume</span>
-                    </motion.button>
                   </div>
                 </div>
               </div>

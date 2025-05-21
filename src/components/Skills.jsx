@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { ArrowRight, Clock, Target, Book, Lightbulb } from "lucide-react";
-
-// Import your skills data from the separate file
+import { Clock, Target, Book } from "lucide-react";
 import { categories, skillsData, learningPath } from "../constants/skills-data";
 
 const Skills = () => {
