@@ -305,7 +305,7 @@ export const skillsData = {
 export const learningPath = [
   {
     skill: "Next.js",
-    progress: 40,
+    progress: 70,
     timeframe: "Learning",
     color: "from-gray-400 to-gray-600",
     icon: NextJSIcon,
@@ -319,14 +319,14 @@ export const learningPath = [
   },
   {
     skill: "Machine Learning",
-    progress: 20,
+    progress: 80,
     timeframe: "Exploring",
     color: "from-pink-400 to-purple-400",
     icon: MLIcon,
   },
   {
     skill: "Go",
-    progress: 15,
+    progress: 40,
     timeframe: "Future",
     color: "from-cyan-400 to-blue-400",
     icon: GoIcon,
